@@ -27,10 +27,5 @@ if(file_exists(WP_MAINTENANCE_DIR . 'vendor/autoload.php')){
     require_once WP_MAINTENANCE_DIR . 'vendor/autoload.php';
 }
 
-// ── Activation / Deactivation hooks ──────────────────────────────────────────
-register_activation_hook( __FILE__, [ 'WpMaintenance\Inc\Activate', 'activate' ] );
-register_deactivation_hook( __FILE__, [ 'WpMaintenance\Inc\Deactivate', 'deactivate' ] );
-
-
 // ── Bootstrap ─────────────────────────────────────────────────────────────────
 WpMaintenance\Inc\Main::init();
