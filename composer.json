@@ -1,0 +1,20 @@
+{
+    "name": "boilerplate/wp-boilerplate",
+    "description": "This is a boilerplate plugin for WordPress",
+    "autoload": {
+        "psr-4": {
+            "WpMaintenance\\Inc\\": "includes/",
+            "WpMaintenance\\Admin\\": "admin/",
+            "WpMaintenance\\Public\\": "public/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tarek",
+            "email": "admin@muhamadtarekreza.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    }
+}
