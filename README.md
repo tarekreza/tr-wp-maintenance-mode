@@ -124,9 +124,6 @@ WordPress will first look for a maintenance template in your active theme direct
 ### Q: Will this plugin impact my site's search engine rankings?
 **A:** No! The plugin sends proper 503 "Service Unavailable" headers that tell search engines your site is temporarily down, preserving your SEO rankings.
 
-### Q: Can I customize the design of the maintenance page?
-**A:** Yes! Copy `public/view/maintenance.php` to your theme and customize it however you want.
-
 ### Q: Do I need coding skills to use this plugin?
 **A:** No! The plugin provides a user-friendly admin interface that requires no coding.
 

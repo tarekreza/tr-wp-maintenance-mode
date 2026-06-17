@@ -5,10 +5,15 @@ defined('ABSPATH') || exit;
 $opts     = get_option('tr_maintenance_mode_settings', [
     'maintenance' => false,
     'headline' => 'Site Under Maintenance',
-    'message' => "We're performing scheduled maintenance. Please try again later."
+    'message' => "We're performing scheduled maintenance. Please try again later.",
+    'imageId' => null
 ]);
 $headline = ! empty($opts['headline']) ? esc_html($opts['headline']) : 'Site Under Maintenance';
 $message  = ! empty($opts['message'])  ? esc_html($opts['message'])  : "We're performing scheduled maintenance. Please try again later.";
+$image_id = !empty($opts['imageId'])  ? esc_html($opts['imageId'])  : null;
+
+$image_url = wp_get_attachment_image_url( (int)$image_id, 'full' );
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -71,7 +76,14 @@ $message  = ! empty($opts['message'])  ? esc_html($opts['message'])  : "We're pe
 
 <body>
     <div class="card">
+        <?php
+            if($image_url == null):
+        ?>
         <span class="icon">🔧</span>
+        <?php
+            endif
+        ?>
+         <img src="<?php echo $image_url ?>" alt="">
         <h1><?php echo $headline; ?></h1>
         <p><?php echo $message; ?></p>
     </div>

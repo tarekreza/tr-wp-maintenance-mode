@@ -8,6 +8,7 @@ import {
 import apiFetch from "@wordpress/api-fetch";
 // for notices
 import Notices from "./Notices";
+import Media from "./Media";
 import { store as noticesStore } from "@wordpress/notices";
 import { useDispatch } from "@wordpress/data";
 
@@ -23,6 +24,8 @@ const SettingsPage = () => {
   // for notices
   const { createSuccessNotice, createErrorNotice } = useDispatch(noticesStore);
 
+  const [imageId, setImageId] = useState(null);
+
   useEffect(() => {
     // Fetch settings from the database or an API when the  component mounts
     apiFetch({
@@ -33,7 +36,9 @@ const SettingsPage = () => {
         setMaintenance(response.tr_maintenance_mode_settings?.maintenance);
         setHeadline(response.tr_maintenance_mode_settings?.headline);
         setMessage(response.tr_maintenance_mode_settings?.message);
+        setImageId(response.tr_maintenance_mode_settings?.imageId);
         setSpinner(false);
+
       })
       .catch((error) => {
         console.log(error);
@@ -51,6 +56,7 @@ const SettingsPage = () => {
           maintenance: maintenance,
           headline: headline,
           message: message,
+          imageId: imageId,
         },
       },
     })
@@ -97,8 +103,9 @@ const SettingsPage = () => {
         value={message}
         onChange={(value) => setMessage(value)}
       />
+      <Media imageId={imageId} setImageId={setImageId} />
       <Button
-        style={{ marginTop: 24 }}
+        style={{ marginTop: 32 }}
         variant="primary"
         onClick={saveSettings}  
         isBusy={saving}

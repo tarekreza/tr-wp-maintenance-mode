@@ -25,8 +25,8 @@ class Admin
  
     public function add_menu() {
         add_menu_page(
-            __( 'WP Maintenance Mode', 'wp-maintenance-mode' ),  // page <title>
-            __( 'WP Maintenance Mode', 'wp-maintenance-mode' ),     // menu label
+            __( 'Maintenance Mode', 'wp-maintenance-mode' ),  // page <title>
+            __( 'Maintenance Mode', 'wp-maintenance-mode' ),     // menu label
             'manage_options',                                    // capability required
             'tr-wp-maintenance-mode',                           // menu slug
             [ $this, 'render_settings_page' ],                   // callback
@@ -48,7 +48,8 @@ class Admin
             'default' => [
                 'maintenance' => false,
                 'headline' => 'Site Under Maintenance',
-                'message' => "We're performing scheduled maintenance. Please try again later."
+                'message' => "We're performing scheduled maintenance. Please try again later.",
+                'imageId' => null,
             ],
             'show_in_rest' => [
                 'schema' => [
@@ -63,6 +64,9 @@ class Admin
                         'message' => [
                             'type' => 'string'
                         ],
+                        'imageId' => [
+                            'type' => ['integer', 'null']
+                        ]
                     ]
                 ]
             ]
@@ -75,6 +79,7 @@ class Admin
     {
         $dependencies = require_once WP_MAINTENANCE_DIR . 'build/index.asset.php';
         wp_enqueue_style('wp-components');
+        wp_enqueue_media();
         wp_enqueue_script(
             'tr-wp-maintenance-mode-react-app',
             WP_MAINTENANCE_URL . 'build/index.js',
